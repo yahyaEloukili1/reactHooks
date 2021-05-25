@@ -2,18 +2,19 @@ import './App.css';
 import { useState } from "react";
 
 function App() {
-  const [count,setCount] = useState(countInitial())
+  const [state,setState] = useState({count : 0,theme: 'blue'})
+  const {count,theme} = state
   function addAmount(amount){
-      setCount(previousCount=>previousCount + amount)
+      setState(previousState=> {
+        return {...state, count : previousState.count + amount}
+      })
   }
-  function countInitial(){
-      console.log('object')
-      return 0
-  }
+ 
   return (
     <div className="App">
         <button onClick={()=>{addAmount(-1)}}>-</button>
         <span>{count}</span>
+        <span>{theme}</span>
         <button  onClick={()=>{addAmount(+1)}}>+</button>
     </div>
   );
