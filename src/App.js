@@ -2,13 +2,23 @@ import './App.css';
 import { useState } from "react";
 
 function App() {
-  const [state,setState] = useState({count : 0,theme: 'blue'})
-  const {count,theme} = state
+  const [count,setCount] = useState(0)
+  const [theme,setTheme] = useState('blue')
+ 
   function addAmount(amount){
-      setState(previousState=> {
-        return {...state, count : previousState.count + amount}
+    changeTheme()
+      setCount(previousCount=> {
+        return previousCount + amount
       })
   }
+  function changeTheme(){
+    setTheme(previousTheme=> {
+      if(previousTheme === 'red'){
+        return 'blue'
+      } 
+      return 'red'
+    })
+}
  
   return (
     <div className="App">
