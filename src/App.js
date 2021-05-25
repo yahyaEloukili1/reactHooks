@@ -1,31 +1,23 @@
 import './App.css';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function App() {
-  const [count,setCount] = useState(0)
-  const [theme,setTheme] = useState('blue')
+  const [resource,setResource] = useState('Users')
+  console.log('render')
+  useEffect(()=>{
+    console.log('render type changed')
+  },[resource])
  
-  function addAmount(amount){
-    changeTheme()
-      setCount(previousCount=> {
-        return previousCount + amount
-      })
+   function changeResource(resource){
+      setResource(previousResource=> resource)
   }
-  function changeTheme(){
-    setTheme(previousTheme=> {
-      if(previousTheme === 'red'){
-        return 'blue'
-      } 
-      return 'red'
-    })
-}
  
   return (
     <div className="App">
-        <button onClick={()=>{addAmount(-1)}}>-</button>
-        <span>{count}</span>
-        <span>{theme}</span>
-        <button  onClick={()=>{addAmount(+1)}}>+</button>
+       <button onClick={()=>{changeResource('Users')}}>Users</button>
+       <button onClick={()=>{changeResource('Posts')}}>Posts</button>
+       <button onClick={()=>{changeResource('Comments')}}>Comments</button>
+       <h3>{resource}</h3>
     </div>
   );
 }
