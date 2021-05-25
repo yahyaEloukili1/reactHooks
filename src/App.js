@@ -2,9 +2,13 @@ import './App.css';
 import { useState } from "react";
 
 function App() {
-  const [count,setCount] = useState(0)
+  const [count,setCount] = useState(countInitial())
   function addAmount(amount){
       setCount(previousCount=>previousCount + amount)
+  }
+  function countInitial(){
+      console.log('object')
+      return 0
   }
   return (
     <div className="App">
