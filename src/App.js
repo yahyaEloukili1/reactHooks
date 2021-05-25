@@ -1,25 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import { Route,BrowserRouter as Router, Switch } from "react-router-dom";
-import Navigation from './Navigation';
-import Accueil from "./Accueil";
-import Project from "./Project";
-import Contact from "./Contact";
+import { useState } from "react";
+
 function App() {
+  const [count,setCount] = useState(0)
+  function addAmount(amount){
+      setCount(previousCount=>previousCount + amount)
+  }
   return (
     <div className="App">
-        <Router>
-            <Navigation/>
-            <Switch>
-              <Route path="/" exact component={Accueil} />
-              <Route path="/projets" exact component={Project} />
-              <Route path="/cantacts" exact component={Contact} />
-              <Route path="/" component={()=><div>Error</div>}/>
-            </Switch>
-
-          
-
-        </Router>
+        <button onClick={()=>{addAmount(-1)}}>-</button>
+        <span>{count}</span>
+        <button  onClick={()=>{addAmount(+1)}}>+</button>
     </div>
   );
 }
